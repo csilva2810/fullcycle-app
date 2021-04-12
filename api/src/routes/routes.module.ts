@@ -5,6 +5,7 @@ import { MongooseModule } from '@nestjs/mongoose';
 import { Route, RouteSchema } from './entities/route.entity';
 import { ClientsModule, Transport } from '@nestjs/microservices';
 import { ConfigModule } from '@nestjs/config';
+import { RoutesGateway } from './routes.gateway';
 
 const getGroupId = () => {
   const id = process.env.KAFKA_CONSUMER_GROUP_ID;
@@ -44,6 +45,6 @@ const getGroupId = () => {
     ]),
   ],
   controllers: [RoutesController],
-  providers: [RoutesService],
+  providers: [RoutesService, RoutesGateway],
 })
 export class RoutesModule {}
